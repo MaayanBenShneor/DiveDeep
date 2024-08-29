@@ -1,0 +1,498 @@
+@startuml
+class com.example.divedeep.AnimatedSpritesObject {
+- boolean show
+# Animation animation
+~ Bitmap[] spritesArray
+~ Bitmap[] saveSpritesArray
+- Bitmap spriteSheet
+- long startTime
++ void update()
++ void draw(Canvas)
++ void draw(Canvas,float,float)
++ void draw(Canvas,float,float,float)
++ void draw(Canvas,float,float,float,Paint)
++ void draw(Canvas,float,float,float,float,float)
++ void flipImage(boolean,boolean)
++ Animation getAnimation()
++ void setAnimation(Animation)
++ boolean isShow()
++ void setShow(boolean)
++ Bitmap getImage()
++ void setNewBitmap(Bitmap,int,int)
+}
+
+
+class com.example.divedeep.SettingsActivity {
+~ RadioButton leftHanded
+~ RadioButton rightHanded
+~ boolean isLeftHanded
+~ SeekBar volumeSeekBar
+~ AudioManager audioManager
+~ Button backButton
+# void onCreate(Bundle)
++ void setThePassingParameter(boolean)
+- void hideSystemUI()
+}
+
+
+class com.example.divedeep.Gold {
+- int rotationAngle
+- int startX
+- int startY
+- int goldSize
++ void update()
+- {static} Bitmap getBitmapForSize(int)
++ int getRotationAngle()
++ int getSize()
+}
+
+
+class com.example.divedeep.BroadcastReceiver {
++ void onReceive(Context,Intent)
+}
+
+abstract class com.example.divedeep.GameObject {
+# int x
+# int y
+# int width
+# int height
++ void setX(int)
++ int getX()
++ void setY(int)
++ int getY()
++ int getHeight()
++ int getWidth()
++ Rect getRectangle()
++ void setWidth(int)
++ void setHeight(int)
+}
+
+
+class com.example.divedeep.Button {
+- float buttonRadius
+- float centerX
+- float centerY
++ float distanceToTouch
+~ Rect buttonRect
++ boolean isPressedRadius(float,float)
++ boolean isPressedRect(float,float)
++ float getCenterX()
++ float getCenterY()
+}
+
+
+class com.example.divedeep.Animation {
+- Bitmap[] sprites
+- int currentSprite
+- int spriteRow
+- int rowLength
+- long startTime
+- long delay
+- boolean playedOnce
++ void setSprites(Bitmap[])
++ void update()
++ Bitmap getImage()
++ boolean getPlayedOnce()
++ void setPlayedOnce(boolean)
++ void setSpriteRow(int)
++ void setRowLength(int)
++ void setDelay(long)
++ void setSprite(int)
++ Bitmap[] getSprites()
++ int getRowLength()
++ int getSpriteRow()
++ boolean isPlayedOnce()
++ int getCurrentSprite()
++ void setCurrentSprite(int)
+}
+
+
+class com.example.divedeep.BubbleSort {
+- ArrayList<StoredScore> listViewItems
++ void bubbleSort()
++ ArrayList<StoredScore> getSortedListViewItems()
+}
+
+
+class com.example.divedeep.Joystick {
+- int outerCircleX
+- int outerCircleY
+- int innerCircleX
+- int innerCircleY
+- Paint innerCirclePaint
+- Paint outerCirclePaint
+- int outerCircleRadius
+- int innerCircleRadius
+- boolean isPressed
+- double dirX
+- double dirY
+- double normalizedDirX
+- double normalizedDirY
+- double joystickAngle
++ void draw(Canvas)
++ void update()
++ boolean isPressed(double,double)
++ void setIsPressed(boolean)
++ boolean getIsPressed()
++ void setDirection(double,double)
++ void resetActuator()
++ double getDirX()
++ double getDirY()
++ double getNormalizedDirX()
++ double getNormalizedDirY()
++ float getAngle()
++ void calculateAngle()
+}
+
+
+class com.example.divedeep.EndGameThread {
+~ int delay
++ void run()
+}
+
+
+class com.example.divedeep.MainMenu {
++ {static} int ORIGINAL_SCREEN_HEIGHT
++ {static} int ORIGINAL_SCREEN_WIDTH
+- MainActivity mainActivity
+- MainMenu mainMenu
+- GamePanel gamePanel
++ {static} int WIDTH
++ {static} int HEIGHT
++ {static} float scaleFactorXMul
++ {static} float scaleFactorYMul
++ {static} Canvas canvas
+- MenuThread menuThread
++ {static} Resources res
+- CustomImage background
+- CustomImage boat
+- Button playButton
+- Paint waterPaint
+- boolean isLeftHanded
+- String playerName
++ void surfaceCreated(SurfaceHolder)
++ boolean onTouchEvent(MotionEvent)
++ void update()
++ void draw(Canvas)
+- void startGame()
++ void surfaceChanged(SurfaceHolder,int,int,int)
++ void surfaceDestroyed(SurfaceHolder)
+}
+
+
+class com.example.divedeep.SeaUrchin {
+- int rotationAngle
+- int startX
+- int startY
++ void update()
++ int getRotationAngle()
+}
+
+
+class com.example.divedeep.MapGenerator {
+- int[][] map
++ int mapWidth
++ int mapHeight
+- int randomFillPercent
+- int smoothingIterations
++ int cellSize
+- Paint paint
++ int wallColor
+- int waterColor
++ {static} float xOffset
++ {static} float yOffset
+- float startingOffsetX
+- float startingOffsetY
+- int goldChance
++ List<Gold> goldList
+- int urchinChance
++ List<SeaUrchin> urchinList
+- void RandomFillMap()
++ void smoothMap()
+- int getSurroundingWallCount(int,int)
+- void generateUrchins()
+- void generateGold()
++ void draw(Canvas,Player)
+- boolean visibleOnScreen(Canvas,int,int,int,int)
+- boolean visibleOnScreen(Canvas,Rect)
+- int interpolateColor(int,int,float)
+- int getState(int,int,int,int)
+}
+
+
+class com.example.divedeep.MyService {
+~ MediaPlayer mediaPlayer
+- float musicVolume
++ IBinder onBind(Intent)
++ void onCreate()
++ int onStartCommand(Intent,int,int)
++ void onDestroy()
+}
+
+
+class com.example.divedeep.OpeningScreen {
+- ImageButton startButton
+- ImageButton quitButton
+- boolean isLeftHanded
+- ActivityResultLauncher<Intent> settingActivityResultLauncher
+# void onCreate(Bundle)
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+- void hideSystemUI()
+}
+
+
+class com.example.divedeep.Player {
+- double dirX
+- double dirY
+- float speed
+- float MAX_SPEED
+- double positionX
+- double positionY
+- int yLevel
+- float playerRectLeft
+- float playerRectTop
+- boolean facingRight
+- float collisionRadius
++ OxygenBar oxygenBar
+- GamePanel gamePanel
+- Joystick joystick
+- Gold goldToMine
++ float distanceToUrchin
+- int goldAmount
+- int maxGold
+- int depth
+- int maxDepth
++ int goldMultiplier
++ void update()
++ void draw(Canvas,float,float,float,float,float)
++ boolean checkCollisionWithWall(float,float,int)
++ void checkGold(List<Gold>)
++ void checkUrchin(List<SeaUrchin>)
++ void mineGold()
++ void fillOxygen(boolean)
++ float getCenterPosX()
++ float getCenterPosY()
++ float getPlayerRectLeft()
++ float getPlayerRectTop()
++ double getPosX()
++ double getPosY()
++ float getHeadPosX()
++ float getHeadPosY()
++ void setYLevel(int)
++ int getYLevel()
++ int getGoldAmount()
++ int getMaxGold()
++ void spendGold(int)
++ float getCurrentOxygen()
++ void mulSpeed(float)
++ float getSpeed()
++ int getDepth()
++ int getMaxDepth()
++ float getMaxSpeed()
+}
+
+
+class com.example.divedeep.GameThread {
+- int FPS
+- boolean running
+- GamePanel gamePanel
+- SurfaceHolder surfaceHolder
+- long lastFrameTime
++ {static} double deltaTime
++ void run()
++ void setRunning(boolean)
++ {static} double getDeltaTime()
+}
+
+
+class com.example.divedeep.MainActivity {
+~ BroadcastReceiver broadcastReceiver
+- {static} int WIDTH
+- {static} int HEIGHT
+- float musicVolume
+- boolean isLeftHanded
+- String playerName
+# void onCreate(Bundle)
+# void onStart()
+# void onStop()
+# void onDestroy()
+# void onPause()
+- void hideSystemUI()
+- void showSystemUI()
+}
+
+
+class com.example.divedeep.StoredScore {
+- String name
+- int goldMined
+- int deepestDive
++ String getName()
++ void setName(String)
++ int getGoldMined()
++ void setGoldMined(int)
++ int getDeepestDive()
++ void setDeepestDive(int)
+}
+
+
+class com.example.divedeep.MenuThread {
+- int FPS
+- boolean running
+- MainMenu mainMenu
+- SurfaceHolder surfaceHolder
+- long lastFrameTime
++ {static} double deltaTime
++ void run()
++ void setRunning(boolean)
++ {static} double getDeltaTime()
+}
+
+
+class com.example.divedeep.ShowScoresActivity {
+~ Button backBtn
++ {static} String SHARED_PREFS_NAME
++ {static} String SCORES_KEY
+- SharedPreferences sp
+- int[] medalImages
+# void onCreate(Bundle)
+- List<StoredScore> retrieveScores()
+- void hideSystemUI()
+}
+
+
+class com.example.divedeep.GamePanel {
++ {static} int ORIGINAL_SCREEN_HEIGHT
++ {static} int ORIGINAL_SCREEN_WIDTH
++ {static} int WIDTH
++ {static} int HEIGHT
++ {static} Canvas canvas
+- MainActivity mainActivity
+- MainMenu mainMenu
+- GestureDetectorCompat gestureDetector
+- GameThread thread
++ {static} float scaleFactorXMul
++ {static} float scaleFactorYMul
++ {static} Resources res
+- Paint depthPaint
++ MapGenerator mapGen
+- CustomImage boat
+- Player player
+- String playerName
+- Joystick joystick
+- int joystickPointerId
++ Button mineButton
+- Button shopButton
+- Paint goldPaint
+- CustomImage goldUI
+- CustomImage shop
+- int speedBoostPrice
+- Button speedBoostBtn
+- Paint pricePaint
+- GamePanel gamePanel
+- Paint vignettePaint
+- Rect vignetteRect
+~ int vignetteRadius
+- Paint deathPaint
+- boolean gameEnded
+- Paint scorePaint
+- boolean playerIsDead
+- MediaPlayer breathingAmbient
+- boolean filledOxygen
+- boolean isLeftHanded
++ void surfaceCreated(SurfaceHolder)
++ void surfaceChanged(SurfaceHolder,int,int,int)
++ void surfaceDestroyed(SurfaceHolder)
++ boolean onTouchEvent(MotionEvent)
++ void update()
++ void draw(Canvas)
+- void saveScore(String,int,int)
++ void vignette(Canvas,float)
++ boolean onSingleTapConfirmed(MotionEvent)
++ boolean onDoubleTap(MotionEvent)
++ boolean onDoubleTapEvent(MotionEvent)
++ boolean onDown(MotionEvent)
++ void onShowPress(MotionEvent)
++ boolean onSingleTapUp(MotionEvent)
++ boolean onScroll(MotionEvent,MotionEvent,float,float)
++ void onLongPress(MotionEvent)
++ boolean onFling(MotionEvent,MotionEvent,float,float)
+}
+
+
+class com.example.divedeep.HelpActivity {
+~ Button nextButton
+~ Button backButton
+~ ImageView helpImg
+~ boolean isFirstImage
+# void onCreate(Bundle)
+- void hideSystemUI()
+}
+
+
+class com.example.divedeep.CustomImage {
+~ MapGenerator map
++ void update()
+}
+
+
+class com.example.divedeep.OxygenBar {
++ {static} int MAX_OXYGEN_SECONDS
++ float maxOxygen
++ float currentOxygen
++ float timeToEmpty
+- float oxygenConsumptionRate
+- OxygenArrow arrow
++ boolean fillingOxygen
++ void update()
++ void draw(Canvas)
++ void changeTimeToEmpty(int)
++ int getMaxOxygenSeconds()
++ float getTimeToEmpty()
+}
+
+
+class com.example.divedeep.OxygenArrow {
+- float minAngle
+- float maxAngle
+- float angle
++ float calculateAngle(float,float)
++ float getAngle()
++ void setAngle(float)
+}
+
+
+class com.example.divedeep.CustomAdapter {
+- int[] aImages
++ View getView(int,View,ViewGroup)
+}
+
+
+
+
+com.example.divedeep.GameObject <|-- com.example.divedeep.AnimatedSpritesObject
+androidx.appcompat.app.AppCompatActivity <|-- com.example.divedeep.SettingsActivity
+com.example.divedeep.AnimatedSpritesObject <|-- com.example.divedeep.Gold
+com.example.divedeep.BroadcastReceiver <|-- com.example.divedeep.BroadcastReceiver
+com.example.divedeep.AnimatedSpritesObject <|-- com.example.divedeep.Button
+com.example.divedeep.Thread <|-- com.example.divedeep.EndGameThread
+com.example.divedeep.Callback <|.. com.example.divedeep.MainMenu
+android.view.SurfaceView <|-- com.example.divedeep.MainMenu
+com.example.divedeep.AnimatedSpritesObject <|-- com.example.divedeep.SeaUrchin
+android.app.Service <|-- com.example.divedeep.MyService
+androidx.appcompat.app.AppCompatActivity <|-- com.example.divedeep.OpeningScreen
+com.example.divedeep.AnimatedSpritesObject <|-- com.example.divedeep.Player
+com.example.divedeep.Thread <|-- com.example.divedeep.GameThread
+androidx.appcompat.app.AppCompatActivity <|-- com.example.divedeep.MainActivity
+com.example.divedeep.Thread <|-- com.example.divedeep.MenuThread
+androidx.appcompat.app.AppCompatActivity <|-- com.example.divedeep.ShowScoresActivity
+com.example.divedeep.Callback <|.. com.example.divedeep.GamePanel
+com.example.divedeep.OnGestureListener <|.. com.example.divedeep.GamePanel
+com.example.divedeep.OnDoubleTapListener <|.. com.example.divedeep.GamePanel
+android.view.SurfaceView <|-- com.example.divedeep.GamePanel
+androidx.appcompat.app.AppCompatActivity <|-- com.example.divedeep.HelpActivity
+com.example.divedeep.AnimatedSpritesObject <|-- com.example.divedeep.CustomImage
+com.example.divedeep.AnimatedSpritesObject <|-- com.example.divedeep.OxygenBar
+com.example.divedeep.AnimatedSpritesObject <|-- com.example.divedeep.OxygenArrow
+android.widget.ArrayAdapter <|-- com.example.divedeep.CustomAdapter
+@enduml

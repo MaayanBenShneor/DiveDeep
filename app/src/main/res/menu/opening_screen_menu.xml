@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/leaderboard"
+        android:icon="@drawable/ic_leaderboard_icon"
+        android:title="leaderboard"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/settings_menu"
+        android:title="Settings"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/help"
+        android:title="How To Play?"
+        app:showAsAction="never"/>
+</menu>

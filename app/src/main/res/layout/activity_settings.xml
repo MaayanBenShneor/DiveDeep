@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu"
+    tools:context=".OpeningScreen">
+
+    <SeekBar
+        android:id="@+id/volumeBar"
+        android:layout_width="204dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginEnd="420dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.558" />
+
+    <TextView
+        android:id="@+id/musicVolumeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="173dp"
+        android:layout_marginEnd="500dp"
+        android:layout_marginBottom="7dp"
+        android:text="Music Volume"
+        android:textColor="#FFFFFF"
+        android:textSize="50px"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.265"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.468" />
+
+    <Button
+        android:id="@+id/backBtnSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#9C000000"
+        android:text="Back"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.088" />
+
+    <RadioGroup
+        android:layout_width="117dp"
+        android:layout_height="112dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.684"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498">
+
+        <RadioButton
+            android:id="@+id/rightHanded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Right Handed" />
+
+        <RadioButton
+            android:id="@+id/leftHanded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Left Handed" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
